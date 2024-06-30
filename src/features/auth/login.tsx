@@ -8,7 +8,7 @@ import Button from '../../shared/ui/Button/Button';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../user/userSlice';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { message } from 'antd';
+// import { message } from 'antd';
 import Spiner from '../../shared/ui/Spinner/Spinner';
 
 
@@ -51,11 +51,11 @@ const Login: React.FC<LoginProps> = ({ close }) => {
             } else {
 
                 console.error('Login failed: Unexpected result format');
-                message.error('Login failed: Unexpected result format')
+                // message.error('Login failed: Unexpected result format')
             }
         } catch (error) {
             console.error('Login failed:', error);
-            message.error('Login failed: Unexpected result format')
+            // message.error('Login failed: Unexpected result format')
             
         }
     };
