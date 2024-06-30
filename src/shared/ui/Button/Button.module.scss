@@ -1,0 +1,19 @@
+.button{
+    background-color: transparent;
+    color: #FF5500;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 12px 15.42px;
+    border:#FF5500 1px solid;
+    // height: min-content;
+    
+}
+.button:hover{
+    cursor: pointer;
+}
+.fullfied{
+    border: none;
+    background-color: #FF5500;
+    color: white
+
+}

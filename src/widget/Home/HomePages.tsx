@@ -1,14 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
-import MovieList from "../widget/movies/MovieList/MovieList";
-import { QuerySearchParams, useGetSearchResultsQuery } from "../features/MovieList/api";
-import SelectCustom from "../shared/ui/Select/Select";
-import Filter from "../widget/Filter/Filter";
-import Spinner from "../shared/ui/Spinner/Spinner";
-import { useRouter } from 'next/router';
-import { debounce } from "lodash";
+
+import { useLocation, useNavigate } from "react-router-dom";
+import {debounce} from "lodash";
+import { QuerySearchParams, useGetSearchResultsQuery } from "@/features/MovieList/api";
+import Filter from "../Filter/Filter";
+import MovieList from "../movies/MovieList/MovieList";
+import Spinner from "@/shared/ui/Spinner/Spinner";
 
 const HomePage: React.FC = () => {
-    const router = useRouter();
+    // const location = useLocation();
+    // const navigate = useNavigate();
     const [searchParams, setSearchParams] = useState<QuerySearchParams>({});
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -18,40 +19,27 @@ const HomePage: React.FC = () => {
     });
 
     useEffect(() => {
-        const { query } = router;
-        const genre = query.genre as string | undefined;
-        const release_year = query.release_year as string | undefined;
-        const title = query.title as string | undefined;
-    
+        const params = new URLSearchParams(window.location.search);
+        const genre = params.get("genre") || undefined;
+        const release_year = params.get("release_year") || undefined;
+        const title = params.get("title") || undefined;
         const updatedParams: QuerySearchParams = {
             ...(genre && { genre }),
             ...(release_year && { release_year }),
             ...(title && { title }),
         };
-    
-        // Проверка перед установкой состояния, чтобы избежать лишних вызовов
-        if (JSON.stringify(searchParams) !== JSON.stringify(updatedParams)) {
-            setSearchParams(updatedParams);
-        }
-    }, [router.query]);
+        setSearchParams(updatedParams);
+    }, [location.search]);
 
     const handleFilterChange = useCallback((newParams: { genre?: string; release_year?: string; title?: string }) => {
-        const params = new URLSearchParams();
-        const updatedParams = { ...searchParams, ...newParams };
+      const updatedParams = { ...searchParams, ...newParams };
+      setSearchParams(updatedParams);
 
-        Object.keys(updatedParams).forEach((key) => {
-            const value = updatedParams[key as keyof typeof updatedParams];
-            if (value) {
-                params.set(key, value);
-            }
-        });
-
-        router.push({
-            pathname: router.pathname,
-            query: params.toString(),
-        }, undefined, { shallow: true });
-        setCurrentPage(1);
-    }, [router.pathname, searchParams]);
+      const params = new URLSearchParams(updatedParams).toString();
+      const url = `${window.location.pathname}?${params}`;
+      window.location.replace(url);
+      setCurrentPage(1);
+  }, [searchParams]);
 
     const debouncedHandleSearch = useCallback(
         debounce((title: string) => {
@@ -65,15 +53,16 @@ const HomePage: React.FC = () => {
     };
 
     const handlePageChange = (page: number) => {
+        console.log("page", page)
         setCurrentPage(page);
     };
-
     return (
         <div style={{ width: "calc( 100% - 50px)", margin: "0 auto", display: "flex", gap: "16px" }} className="container">
             <Filter onChange={handleFilterChange} />
             {!isLoading && !isFetching ?
                 <MovieList cards={data?.search_result || []} onChangeInput={handleSearchChange} totalPages={data?.total_pages || 1} onPageChange={handlePageChange} currentPage={currentPage} />
                 : <Spinner />}
+
         </div>
     );
 };

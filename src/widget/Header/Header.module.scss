@@ -1,0 +1,43 @@
+// .header {
+//     background-color: #333333;
+//     padding: 31px;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     position: sticky;
+//     top:0px;
+
+//     .title {
+//         color: #FFFFFF;
+//         font-size: 32px;
+//         font-weight: bold;
+//     }
+// }
+
+// .ant-modal-footer {
+//     display: none;
+// }
+
+// .footer {
+//     display: flex;
+//     gap: 8px
+// }
+.header {
+    position: fixed;
+    top: 0;
+    background-color: #333333;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 31px ;
+    box-sizing: border-box;
+    height: 88px;
+
+    .title {
+        color: #FFFFFF;
+        font-size: 32px;
+        font-weight: bold;
+    }
+}

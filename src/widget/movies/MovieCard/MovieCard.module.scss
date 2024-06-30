@@ -1,0 +1,47 @@
+.card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 16px 0;
+    display: flex;
+    flex-direction: row;
+    gap:24px;
+
+    .img {
+        max-width: 100px;
+        max-height: 120px;
+        border-radius: 8px;
+    }
+
+    .container_description {
+        h1 {
+            font-size: 20px;
+            margin: 0;
+        }
+
+        table {
+            border-spacing: 0px 12px;
+            tbody {
+                font-size: 14px;
+                text-align: left;
+                th {
+                    font-weight: 200;
+                    &:nth-child(2){
+                        padding-left: 16px;
+                    }    
+                }
+                
+
+                .disable {
+                    color: #ABABAB;
+                    white-space: nowrap;
+                }
+            }
+
+        }
+
+        // display: flex;
+        // flex-direction: row;
+
+    }
+}
