@@ -26,7 +26,7 @@ export const searchApi = createApi({
     getSearchResults: builder.query<QueryResultType, QuerySearchParams>({
       query: (params) => {
         const query = new URLSearchParams(params as any).toString();
-        // console.log(query)
+     
         if (query)
           return `search?${query}`
         return 'search'

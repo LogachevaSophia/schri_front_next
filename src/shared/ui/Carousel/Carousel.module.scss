@@ -3,13 +3,13 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
-    padding: 0 100px;
+    // padding: 0 100px;
 
     .carousel-slides {
         display: flex;
         transition: transform 0.5s ease;
-        justify-content: space-between;
-
+        gap: 20px;
+        // width: 100%;
     }
 
     .slide {

@@ -8,7 +8,7 @@ type Props = {
 const CustomCarousel: React.FC<Props> = ({ children , slidesToShow = 1, slidesToScroll = 1, ...props}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const totalSlides = React.Children.count(children);
-    console.log(slidesToShow)
+
 
     const nextSlide = () => {
         setCurrentIndex((prevIndex) => {
@@ -34,7 +34,7 @@ const CustomCarousel: React.FC<Props> = ({ children , slidesToShow = 1, slidesTo
                     <div className={styles["slide"]}>{child}</div>
                 ))}
             </div>
-            <button className={styles["prev-button"]} onClick={prevSlide} disabled={disablePrev}>
+            {!disablePrev && <button className={styles["prev-button"]} onClick={prevSlide} disabled={disablePrev}>
                 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d_5131_4436)">
                         <rect x="4" y="4" width="48" height="48" rx="24" fill="white" shapeRendering="crispEdges" />
@@ -54,7 +54,8 @@ const CustomCarousel: React.FC<Props> = ({ children , slidesToShow = 1, slidesTo
                         </filter>
                     </defs>
                 </svg>
-            </button>
+            </button>}
+            {!disableNext && 
             <button className={styles["next-button"]} onClick={nextSlide} disabled={disableNext}>
                 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_d_5131_4388)">
@@ -74,7 +75,7 @@ const CustomCarousel: React.FC<Props> = ({ children , slidesToShow = 1, slidesTo
                         </filter>
                     </defs>
                 </svg>
-            </button>
+            </button>}
         </div>
     );
 };

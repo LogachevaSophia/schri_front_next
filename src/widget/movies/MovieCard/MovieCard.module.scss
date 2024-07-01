@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: row;
     gap:24px;
+    cursor: pointer;
 
     .img {
         max-width: 100px;
@@ -14,6 +15,8 @@
     }
 
     .container_description {
+        display: flex;
+
         h1 {
             font-size: 20px;
             margin: 0;

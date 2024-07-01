@@ -6,7 +6,7 @@ import Header from "@/widget/Header/Header";
 export default function App({ Component, pageProps }: AppProps) {
   return <Providers>
     <Header />
-    <div style={{ marginTop: "50px" }}>
+    <div style={{ marginTop: "100px" }}>
       <Component {...pageProps} />
     </div>
 

@@ -20,10 +20,8 @@ const SearchInput: React.FC<SearchInput> = ({ placeholder, onChange, value="" })
 
     useEffect(() => {
         const { title } = router.query;
-        console.log(title)
         if (typeof title === "string") {
             setValue(title)
-          console.log("Title from URL:", title);
         }
       }, [router.query]);
 
@@ -40,7 +38,7 @@ const SearchInput: React.FC<SearchInput> = ({ placeholder, onChange, value="" })
 
     const onRemove = () => {
         
-        console.log("remove")
+
         setValue("");
         onChange("");
     }

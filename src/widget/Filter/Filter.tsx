@@ -89,8 +89,9 @@ const Filter: React.FC<FilterProps> = ({ onChange }) => {
             query,
         }, undefined, { shallow: true });
 
-        // Call the onChange function to notify parent components of changes
-        onChange({ genre: selectedGenre ?? "", release_year: selectedYear ?? "" });
+        const validGenre = selectedGenre && selectedGenre !== "0" ? selectedGenre : "";
+        const validYear = selectedYear && selectedYear !== "0" ? selectedYear : "";
+        onChange({ genre: validGenre, release_year: validYear });
     }, [selectedGenre, selectedYear, router.pathname, onChange]);
 
     const handleGenreChange = (genre: string) => {

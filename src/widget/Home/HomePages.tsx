@@ -20,14 +20,15 @@ const HomePage: React.FC = () => {
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
-        const genre = params.get("genre") || undefined;
-        const release_year = params.get("release_year") || undefined;
-        const title = params.get("title") || undefined;
+        const genre = params.get("genre");
+        const release_year = params.get("release_year");
+        const title = params.get("title");
         const updatedParams: QuerySearchParams = {
-            ...(genre && { genre }),
-            ...(release_year && { release_year }),
-            ...(title && { title }),
+          ...(genre && genre !== "0" && { genre }),
+          ...(release_year && release_year !== "0" && { release_year }),
+          ...(title && { title }),
         };
+    
         setSearchParams(updatedParams);
     }, [location.search]);
 
@@ -53,7 +54,6 @@ const HomePage: React.FC = () => {
     };
 
     const handlePageChange = (page: number) => {
-        console.log("page", page)
         setCurrentPage(page);
     };
     return (

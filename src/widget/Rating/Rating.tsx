@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 type RatingType = {
     rating: number,
-    onChange: (rating: number)=> void
+    onChange: (rating: number) => void
 }
 
 
@@ -13,7 +13,7 @@ const Rating: React.FC<RatingType> = ({ rating, onChange }) => {
 
 
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    
+
 
     const handleStarHover = (index: number) => {
         setHoveredIndex(index);
@@ -22,8 +22,8 @@ const Rating: React.FC<RatingType> = ({ rating, onChange }) => {
     const stars = Array.from({ length: maxStars }, (_, index) => {
 
         // if (index<filledStars){
-        return <div style={{ display: "flex", flexDirection: "column", textAlign: "center", cursor:"pointer" }} key={index}>
-            <svg onClick={()=> onChange(index+1)}width="16" height="16" viewBox="0 0 16 16"
+        return <div style={{ display: "flex", flexDirection: "column", textAlign: "center", cursor: "pointer" }} key={index}>
+            <svg onClick={(e) => { e.stopPropagation();onChange(index + 1) }} width="16" height="16" viewBox="0 0 16 16"
                 xmlns="http://www.w3.org/2000/svg"
                 onMouseEnter={() => handleStarHover(index)}
                 onMouseLeave={() => setHoveredIndex(null)}>
@@ -31,7 +31,7 @@ const Rating: React.FC<RatingType> = ({ rating, onChange }) => {
                     fill={hoveredIndex !== null && index <= hoveredIndex ? "#ABABAB" : index < filledStars ? "#FF5500" : "none"}
                     stroke={index >= filledStars ? "#ABABAB" : "none"} />
             </svg>
-            <label>{index+1}</label>
+            <label>{index + 1}</label>
         </div>
 
     });

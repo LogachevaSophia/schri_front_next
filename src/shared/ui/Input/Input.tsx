@@ -14,7 +14,6 @@ export interface inputProps {
 
 
 const Input: React.FC<inputProps> = ({ label, error, isRequired = false, ...props }) => {
-    // console.log(props)
     return (
         <div>
             <label>

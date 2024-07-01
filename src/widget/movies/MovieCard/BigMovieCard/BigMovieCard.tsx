@@ -56,7 +56,7 @@ const BigMovieCard: React.FC<MovieCardType> = ({ poster, title, genre, release_y
                     <span><b>Жанр: </b>{genre}</span>
                     <span><b>Год выпуска: </b>{release_year}</span>
                     <span><b>Рейтинг: </b>{rating}</span>
-                    <label><b>Описание: </b>{description}</label>
+                    <span><b>Описание: </b><br/>{description}</span>
                 </div>
             </div>
         </div>
