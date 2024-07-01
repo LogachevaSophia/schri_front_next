@@ -21,7 +21,7 @@ const MovieList: React.FC<List> = ({ cards, onChangeInput, currentPage, totalPag
 
     return (
         <div>
-            <SearchInput placeholder="Поиск..." onChange={onChangeInput} />
+            <SearchInput placeholder="Поиск..." onChange={onChangeInput}/>
             {cards.map((el) => (
                 <MovieCard {...el} key={el?.id} onClick={() => handleCardClick(el?.id)} />
             ))}

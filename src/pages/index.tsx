@@ -22,13 +22,13 @@ const HomePage: React.FC = () => {
         const genre = query.genre as string | undefined;
         const release_year = query.release_year as string | undefined;
         const title = query.title as string | undefined;
-    
+
         const updatedParams: QuerySearchParams = {
             ...(genre && { genre }),
             ...(release_year && { release_year }),
             ...(title && { title }),
         };
-    
+
         // Проверка перед установкой состояния, чтобы избежать лишних вызовов
         if (JSON.stringify(searchParams) !== JSON.stringify(updatedParams)) {
             setSearchParams(updatedParams);
@@ -69,11 +69,12 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        <div style={{ width: "calc( 100% - 50px)", margin: "0 auto", display: "flex", gap: "16px" }} className="container">
+        <div style={{ width: "calc( 100% - 50px)", margin: "0 auto", display: "flex", gap: "16px", marginTop:"100px" }} className="container">
             <Filter onChange={handleFilterChange} />
             {!isLoading && !isFetching ?
                 <MovieList cards={data?.search_result || []} onChangeInput={handleSearchChange} totalPages={data?.total_pages || 1} onPageChange={handlePageChange} currentPage={currentPage} />
                 : <Spinner />}
+            <div id="modal-root"></div>
         </div>
     );
 };

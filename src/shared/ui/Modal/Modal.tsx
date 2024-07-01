@@ -1,45 +1,45 @@
-import React from "react";
-
-import { Modal as ModalAnt } from "antd";
-import Button from "../Button/Button";
-
+import React, { FC, ReactNode } from 'react';
+import ReactDOM from 'react-dom';
+import styles from './Modal.module.scss';
 
 interface ModalProps {
-    open: boolean;
-    // onClick?: () => void; // Обработчик клика
-    children: React.ReactNode; // Текст или вложенные компоненты
-    // className?: string; // Дополнительный класс для стилизации
-    onCancel: ()=> void;
-    title: string;
-    width: any;
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
 }
 
-const Modal: React.FC<ModalProps> = ({open, children, title, onCancel, ...props}) => {
-    const footer = [
-        // <Button key="back" >
-        //   Войти
-        // </Button>,
-        // <Button key="submit" variant={"outlined"} >
-        //   Отменить
-        // </Button>,
-      ]
+const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+  if (!isOpen) return null;
 
-    return (
+  return ReactDOM.createPortal(
+    <div className={styles['modal-overlay']}>
+      <div className={styles['modal']}>
+        <button className={styles['modal-close-button']} onClick={onClose}>
+          Закрыть
+        </button>
+        <div className={styles['modal-content']}>{children}</div>
+      </div>
+    </div>,
+    document.getElementById('modal-root')!
+  );
+};
 
-        <ModalAnt
-            title={title}
-            open={open}
-            onCancel={onCancel}
-            footer={null}
-            {...props}
-            >
-                {children}
-
-        </ModalAnt>
-    )
-
-
-
+interface ModalWrapperProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  children: React.ReactNode;
 }
 
-export default Modal;
+const ModalWrapper: FC<ModalWrapperProps> = ({ isOpen, closeModal, children }) => {
+  return (
+    <>
+      {isOpen && (
+        <Modal isOpen={isOpen} onClose={closeModal}>
+          {children}
+        </Modal>
+      )}
+    </>
+  );
+};
+
+export default ModalWrapper;

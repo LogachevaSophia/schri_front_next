@@ -44,7 +44,6 @@ const MovieCard: React.FC<MovieCardType> = ({ poster, title, genre, release_year
 
     useEffect(()=>{
         localStorage.setItem(`selectedRating-${id}`, selectedRating.toString())
-        console.log("selectedRating", selectedRating)
 
     },[selectedRating])
 

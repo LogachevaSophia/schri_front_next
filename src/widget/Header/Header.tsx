@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import Login from "../../features/auth/login";
 import { logout, setToken } from "../../features/user/userSlice";
+import ModalWrapper from "../../shared/ui/Modal/Modal";
 
 const Header: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated);
@@ -43,16 +44,17 @@ const Header: React.FC = () => {
           Войти
         </Button>
       )}
+      
+      <ModalWrapper isOpen={open} closeModal={() => setOpen(false)}>
+        <Login close={() => setOpen(false)}  />
+      </ModalWrapper>
 
-      <Modal
-        open={open}
-        onCancel={() => setOpen(false)}
-        title={"Авторизация"}
-        width="min-content"
-      >
-        <Login close={() => setOpen(false)} />
-      </Modal>
+      {/* <ModalWrapper isOpen={isOpen} closeModal={closeModal}>
+        <h2>Модальное окно</h2>
+        <p>Это содержимое модального окна.</p>
+      </ModalWrapper> */}
     </header>
+
   );
 };
 
