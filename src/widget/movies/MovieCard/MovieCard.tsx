@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./MovieCard.module.scss"
 import Rating from "../../Rating/Rating";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../app/store";
+
 import { actor } from "./BigMovieCard/BigMovieCard";
+import { RootState } from "@/services/store/store";
+import Image from "next/image";
 
 
 export type MovieCardType = {
@@ -49,8 +51,9 @@ const MovieCard: React.FC<MovieCardType> = ({ poster, title, genre, release_year
 
     return (
         <div className={styles.card} onClick={onClick}>
-            <img src={poster} className={styles.img}>
-            </img>
+            <Image src={poster} className={styles.img} alt={title} loading="lazy" width={400} height={500}/>
+            {/* <img src={poster} className={styles.img}>
+            </img> */}
             <div className={styles.container_description}>
                 <div>
                     <div>
