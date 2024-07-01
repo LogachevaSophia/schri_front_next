@@ -7,6 +7,7 @@ export default function Document() {
       <body style={{backgroundColor: "#EDEDED"}}>
         <Main />
         <NextScript />
+        <div id="modal-root"></div>
       </body>
     </Html>
   );

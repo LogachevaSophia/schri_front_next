@@ -1,15 +1,14 @@
 
 import React, { useState } from 'react';
-import { useLoginMutation } from './api';
+
 import { Field, Form, Formik } from 'formik';
 import Input from '../../shared/ui/Input/Input';
 import * as Yup from 'yup';
 import Button from '../../shared/ui/Button/Button';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../user/userSlice';
-import { unwrapResult } from '@reduxjs/toolkit';
-// import { message } from 'antd';
 import Spiner from '../../shared/ui/Spinner/Spinner';
+import { useLoginMutation } from '@/services/AuthApi';
 
 
 interface FormValues {

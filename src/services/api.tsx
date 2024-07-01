@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import {MovieCardType} from "../../widget/movies/MovieCard/MovieCard"
+import {MovieCardType} from "../widget/movies/MovieCard/MovieCard"
 
 type QueryResultType = {
   search_result: MovieCardType[],

@@ -1,12 +1,12 @@
+import { selectToken } from '@/features/user/userSlice';
+import { RootState } from '@/pages/store';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { selectToken, setToken } from '../user/userSlice'; // Используем селектор для получения токена из стейта
-import { RootState } from '../../app/store';
 
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3030/api/v1',
-    prepareHeaders: (headers: any, { getState }) => {
+    prepareHeaders: (headers, { getState }) => {
       const state = getState() as RootState;
       const token = selectToken(state); // Используем селектор для получения токена из стейта
       if (token) {
@@ -25,7 +25,7 @@ const api = createApi({
   }),
   endpoints: (builder) => ({
     login: builder.mutation({
-      query: (credentials: any) => ({
+      query: (credentials) => ({
         url: '/login',
         method: 'POST',
         body: credentials,

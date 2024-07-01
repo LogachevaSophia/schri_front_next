@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 
 import styles from "@/widget/movies/MovieCard/BigMovieCard/MovieCard.module.scss"
 import { MovieCardType } from "@/widget/movies/MovieCard/MovieCard";
-import { useGetMovieByIdQuery } from "@/features/MovieList/api";
+import { useGetMovieByIdQuery } from "@/services/api";
 import CustomCarousel from "@/shared/ui/Carousel/Carouse";
 import BigMovieCard from "@/widget/movies/MovieCard/BigMovieCard/BigMovieCard";
 import { useRouter } from "next/router";

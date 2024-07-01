@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import MovieList from "../widget/movies/MovieList/MovieList";
-import { QuerySearchParams, useGetSearchResultsQuery } from "../features/MovieList/api";
+import { QuerySearchParams, useGetSearchResultsQuery } from "../services/api";
 import SelectCustom from "../shared/ui/Select/Select";
 import Filter from "../widget/Filter/Filter";
 import Spinner from "../shared/ui/Spinner/Spinner";
@@ -69,13 +69,25 @@ const HomePage: React.FC = () => {
     };
 
     return (
-        <div style={{ width: "calc( 100% - 50px)", margin: "0 auto", display: "flex", gap: "16px", marginTop:"100px" }} className="container">
+        <div style={{ width: "calc(100% - 50px)", margin: "0 auto", display: "flex", gap: "16px", marginTop: "100px" }} className="container">
+        {error && <span>Ошибка получения данных</span>}
+        {!error && (
+          <>
             <Filter onChange={handleFilterChange} />
-            {!isLoading && !isFetching ?
-                <MovieList cards={data?.search_result || []} onChangeInput={handleSearchChange} totalPages={data?.total_pages || 1} onPageChange={handlePageChange} currentPage={currentPage} />
-                : <Spinner />}
-            <div id="modal-root"></div>
-        </div>
+            {!isLoading && !isFetching ? (
+              <MovieList
+                cards={data?.search_result || []}
+                onChangeInput={handleSearchChange}
+                totalPages={data?.total_pages || 1}
+                onPageChange={handlePageChange}
+                currentPage={currentPage}
+              />
+            ) : (
+              <Spinner />
+            )}
+          </>
+        )}
+      </div>
     );
 };
 

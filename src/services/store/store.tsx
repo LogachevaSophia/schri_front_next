@@ -1,8 +1,9 @@
 // src/app/store.ts
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from '../features/user/userSlice';
-import api from '../features/auth/api';
-import { searchApi } from '../features/MovieList/api';
+import userReducer from '../../features/user/userSlice';
+
+import { searchApi } from '../api';
+import api from '@/services/AuthApi';
 
 export const store = configureStore({
     reducer: {
